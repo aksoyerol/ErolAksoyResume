@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ErolAksoyResume.Dal\ErolAksoyResume.Dal.csproj" />
+    <ProjectReference Include="..\ErolAksoyResume.Entities\ErolAksoyResume.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
