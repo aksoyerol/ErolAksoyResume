@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories
 {
-    public class ResumeRepository : GenericRepository<Resume>, IResumeMap
+    public class ResumeRepository : GenericRepository<Resume>, IResumeDal
     {
     }
 }

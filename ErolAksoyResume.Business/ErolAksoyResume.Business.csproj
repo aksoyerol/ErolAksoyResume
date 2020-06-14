@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="8.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ErolAksoyResume.Dal\ErolAksoyResume.Dal.csproj" />
+    <ProjectReference Include="..\ErolAksoyResume.Dto\ErolAksoyResume.Dto.csproj" />
     <ProjectReference Include="..\ErolAksoyResume.Entities\ErolAksoyResume.Entities.csproj" />
   </ItemGroup>
 

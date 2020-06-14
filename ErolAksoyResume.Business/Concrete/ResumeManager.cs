@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ErolAksoyResume.Business.Concrete
 {
-    public class ResumeManager : GenericManager<Resume>,IResumService
+    public class ResumeManager : GenericManager<Resume>,IResumeService
     {
         public ResumeManager(IGenericDal<Resume> genericDal) : base(genericDal)
         {
