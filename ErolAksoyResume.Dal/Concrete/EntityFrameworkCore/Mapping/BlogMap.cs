@@ -17,8 +17,8 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Mapping
             builder.Property(x => x.Title).HasMaxLength(50);
             builder.Property(x => x.Text).HasColumnType("ntext");
             builder.Property(x => x.ImageUrl).HasMaxLength(100);
-
-            builder.HasOne(x => x.AppUser).WithMany(x => x.Blogs).HasForeignKey(x => x.AppUserId).OnDelete(DeleteBehavior.SetNull);
+            builder.Property(x => x.AppUserId).IsRequired();
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Blogs).HasForeignKey(x => x.AppUserId);
 
         }
     }

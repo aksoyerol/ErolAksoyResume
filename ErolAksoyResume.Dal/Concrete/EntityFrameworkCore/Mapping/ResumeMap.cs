@@ -17,8 +17,9 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Mapping
             builder.Property(x => x.EndedDate).HasColumnName("Ended Date");
             builder.Property(x => x.Title).HasMaxLength(100).IsRequired();
             builder.Property(x => x.Text).HasColumnType("ntext");
+            builder.Property(x => x.SubCategoryId).IsRequired();
 
-            builder.HasOne(x => x.SubCategory).WithMany(x => x.Resumes).HasForeignKey(x => x.SubCategoryId).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne(x => x.SubCategory).WithMany(x => x.Resumes).HasForeignKey(x => x.SubCategoryId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

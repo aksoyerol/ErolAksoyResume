@@ -23,17 +23,18 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Mapping
             builder.Property(x => x.Adress).HasMaxLength(200);
             builder.Property(x => x.ProfileImageUrl).HasMaxLength(80);
             builder.Property(x => x.CvLinkUrl).HasMaxLength(80);
-
+            
             builder.Property(x => x.Medium).HasMaxLength(25);
             builder.Property(x => x.Twitter).HasMaxLength(25);
             builder.Property(x => x.Facebook).HasMaxLength(25);
             builder.Property(x => x.Instagram).HasMaxLength(25);
             builder.Property(x => x.LinkedIn).HasMaxLength(25);
             builder.Property(x => x.Github).HasMaxLength(25);
-            
 
-            
+
+
 
         }
     }
 }
+

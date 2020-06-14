@@ -14,7 +14,7 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Mapping
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
-
+            builder.Property(x => x.CategoryId).IsRequired();
             builder.HasOne(x => x.Category).WithMany(x => x.SubCategories).HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.Cascade);
         }
     }
