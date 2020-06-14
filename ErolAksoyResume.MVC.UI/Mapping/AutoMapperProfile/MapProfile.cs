@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
+using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
 using ErolAksoyResume.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<CategoryUpdateDto, Category>();
             CreateMap<Category, CategoryAddDto>();
             CreateMap<CategoryAddDto, Category>();
+
+            CreateMap<SubCategory, SubCategoryListDto>();
+            CreateMap<SubCategoryListDto, SubCategory>();
         }
     }
 }
