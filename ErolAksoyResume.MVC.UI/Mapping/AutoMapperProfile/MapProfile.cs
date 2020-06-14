@@ -14,6 +14,10 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
         {
             CreateMap<Category, CategoryListDto>();
             CreateMap<CategoryListDto, Category>();
+            CreateMap<Category, CategoryUpdateDto>();
+            CreateMap<CategoryUpdateDto, Category>();
+            CreateMap<Category, CategoryAddDto>();
+            CreateMap<CategoryAddDto, Category>();
         }
     }
 }

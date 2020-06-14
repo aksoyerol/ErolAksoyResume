@@ -1,0 +1,26 @@
+﻿@model CategoryUpdateDto
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="w-50 mx-auto mt-5 shadow-sm p-5 rounded bg-gradient-light">
+    <form asp-action="Edit" asp-controller="Category" method="post">
+        <input type="hidden" asp-for="@Model.Id" />
+        <div class="form-group">
+            <label asp-for="@Model.Name"></label>
+            <br />
+            <span class="text-danger" asp-validation-for="@Model.Name"></span>
+            <br />
+            <input type="text" class="form-control" asp-for="@Model.Name" />
+        </div>
+
+        <a asp-action="Index" asp-controller="Category" class="btn btn-warning col-md-5 offset-1">Cancel</a>
+        <button type="submit" class="btn btn-primary col-md-5">Save Changes</button>
+    </form>
+</div>
+
+@section JavaScript{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

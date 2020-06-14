@@ -16,7 +16,7 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
     {
         public static void AddDependencies(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IGenericDal<>),typeof(GenericRepository<>));
+            services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
             services.AddScoped<IAppUserDal, AppUserRepository>();
             services.AddScoped<IBlogDal, BlogRepository>();
             services.AddScoped<ICategoryDal, CategoryRepository>();
@@ -41,6 +41,8 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
             /************************** VALIDATON **************************/
 
             services.AddTransient<IValidator<CategoryListDto>, CategoryListDtoValidator>();
+            services.AddTransient<IValidator<CategoryUpdateDto>, CategoryUpdateDtoValidator>();
+            services.AddTransient<IValidator<CategoryAddDto>, CategoryAddDtoValidator>();
         }
     }
 }

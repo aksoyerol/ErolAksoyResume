@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ErolAksoyResume.Business.Containers.MicrosoftIoc;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +27,7 @@ namespace ErolAksoyResume.MVC.UI
         {
             services.AddDependencies();
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
