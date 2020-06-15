@@ -13,7 +13,6 @@ namespace ErolAksoyResume.Entities.Concrete
         public DateTime? StartedDate { get; set; }
         public DateTime? EndedDate { get; set; }
         public bool IsDraft { get; set; }
-
         public int SubCategoryId { get; set; }
         public SubCategory SubCategory { get; set; }
     }

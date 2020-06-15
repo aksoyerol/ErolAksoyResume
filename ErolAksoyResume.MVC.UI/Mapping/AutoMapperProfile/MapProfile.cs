@@ -22,6 +22,10 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
 
             CreateMap<SubCategory, SubCategoryListDto>();
             CreateMap<SubCategoryListDto, SubCategory>();
+            CreateMap<SubCategory, SubCategoryAddDto>();
+            CreateMap<SubCategoryAddDto, SubCategory>();
+            CreateMap<SubCategory, SubCategoryUpdateDto>();
+            CreateMap<SubCategoryUpdateDto, SubCategory>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model CategoryUpdateDto
+﻿@model SubCategoryUpdateDto
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -7,18 +7,29 @@
     <p class="col-md-12 font-weight-bold mt-3 mb-3 my-auto"><i class="fa fa-edit"></i>&nbsp; <b>@Model.Name</b></p>
 </div>
 <hr />
-<div class="w-50 mx-auto mt-5 shadow-sm p-5 rounded bg-gradient-light">
-    <form asp-action="Edit" asp-controller="Category" method="post">
-        <input type="hidden" asp-for="@Model.Id" />
+<div class="w-50 mx-auto mt-5 shadow-sm p-5 rounded">
+
+    <form asp-action="Edit" asp-controller="SubCategory" method="post">
+
         <div class="form-group">
+            <input type="hidden" asp-for="@Model.Id" />
             <label asp-for="@Model.Name"></label>
             <br />
             <span class="text-danger" asp-validation-for="@Model.Name"></span>
             <br />
             <input type="text" class="form-control" asp-for="@Model.Name" />
         </div>
+        <div class="form-group">
 
-        <a asp-action="Index" asp-controller="Category" class="btn btn-warning col-md-5 offset-1">Cancel</a>
+            <label>Base Category</label> &nbsp;
+            <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+            <select asp-for="@Model.CategoryId" asp-items="@Model.CategoryList" type="text" class="form-control">
+                
+            </select>
+
+        </div>
+
+        <a asp-action="Index" asp-controller="SubCategory" class="btn btn-warning col-md-5 offset-1">Cancel</a>
         <button type="submit" class="btn btn-primary col-md-5">Save Changes</button>
     </form>
 </div>
