@@ -1,9 +1,11 @@
 ﻿using ErolAksoyResume.Business.Concrete;
 using ErolAksoyResume.Business.Interfaces;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation;
+using ErolAksoyResume.Business.ValidationRules.FluentValidation.ResumeDtoValidator;
 using ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories;
 using ErolAksoyResume.Dal.Interfaces;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
+using ErolAksoyResume.Dto.Concrete.ResumeDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,6 +48,7 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
             services.AddTransient<IValidator<CategoryAddDto>, CategoryAddDtoValidator>();
             services.AddTransient<IValidator<SubCategoryAddDto>, SubCategoryAddDtoValidator>();
             services.AddTransient<IValidator<SubCategoryUpdateDto>, SubCategoryUpdateDtoValidator>();
+            services.AddTransient<IValidator<ResumeAddDto>, ResumeAddDtoValidator>();
         }
     }
 }
