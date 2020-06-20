@@ -1,0 +1,147 @@
+﻿@model ResumeAddDto
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="row">
+        <form class="border border-light p-5">
+
+            <p class="h4 mb-4 text-center">Sign in</p>
+
+            <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+            <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+            <div class="d-flex justify-content-between">
+                <div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                    </div>
+                </div>
+                <div>
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+
+            <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+            <div class="text-center">
+                <p>
+                    Not a member?
+                    <a href="">Register</a>
+                </p>
+
+                <p>or sign in with:</p>
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Create" asp-controller="Resume" method="post">
+
+            <div class="form-inline">
+                
+                    <label class="d-inline" asp-for="@Model.Title"></label> :
+                    <span class="text-danger" asp-validation-for="@Model.Title"></span>
+
+                    <input type="text" class="form-control w-25" asp-for="@Model.Title" />
+                
+            </div>
+
+            <div class="form-inline">
+                <label asp-for="@Model.Text"></label>
+
+                <span class="text-danger" asp-validation-for="@Model.Text"></span>
+                <br />
+                <input type="text" class="form-control" asp-for="@Model.Text" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.StartedDate"></label>
+
+                <span class="text-danger" asp-validation-for="@Model.StartedDate"></span>
+
+                <input type="text" id="datePicker" class="form-control" asp-for="@Model.StartedDate" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.EndedDate"></label>
+
+                <span class="text-danger" asp-validation-for="@Model.EndedDate"></span>
+
+                <input type="text" id="datepicker" class="form-control" asp-for="@Model.EndedDate" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.IsDraft"></label>
+
+                <span class="text-danger" asp-validation-for="@Model.IsDraft"></span>
+
+                <input type="checkbox" class="custom-checkbox" asp-for="@Model.IsDraft" />
+            </div>
+
+            <div class="form-group">
+
+                <label>Category</label> &nbsp;
+                <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                <select id="CategoryId" asp-for="@Model.CategoryId" asp-items="@Model.CategoryList" class="form-control">
+                </select>
+            </div>
+
+            <div class="form-group">
+
+                <label>Category</label> &nbsp;
+                <span asp-validation-for="@Model.SubCategoryId" class="text-danger"></span>
+                <select id="SubCategoryId" asp-for="@Model.SubCategoryId" asp-items="@(new SelectList(string.Empty,"Id","Name"))" class="form-control">
+                </select>
+            </div>
+
+            <a asp-action="Index" asp-controller="Resume" class="btn btn-warning col-md-5 offset-1">Cancel</a>
+            <button type="submit" class="btn btn-primary col-md-5">Save</button>
+        </form>
+    </div>
+</div>
+@section JavaScript{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#CategoryId").on("change", function () {
+                $list = $("#SubCategoryId");
+                $.ajax({
+                    url: "../GetSubCategories",
+                    type: "GET",
+                    data: { id: $("#CategoryId").val() }, //id of the state which is used to extract cities
+
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        $list.empty();
+                        $.each(result, function (i, item) {
+                            $list.append('<option value="' + item.value + '"> ' + item.text + ' </option>');
+
+                        });
+                    },
+                    error: function () {
+                        alert("Something went wrong call the police");
+                    }
+                });
+            });
+        });
+    </script>
+}
+

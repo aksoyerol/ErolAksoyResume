@@ -1,5 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+@{ 
+    string active = string.Empty;
+    if (TempData["active"] != null)
+    {
+        active = TempData["active"].ToString();
+    }
+}
+<!DOCTYPE html>
+<html lang="tr">
 
 <head>
 
@@ -84,6 +92,13 @@
 
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item @(active=="resume"?"active bg-info":"")">
+                <a class="nav-link" asp-action="Index" asp-controller="Resume">
+                    <i class="fas fa-fw fa-paper-plane"></i>
+                    <span>Resume</span>
+                </a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
