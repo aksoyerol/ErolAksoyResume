@@ -19,7 +19,7 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories
             return await context.Categories.Include(x => x.SubCategories).Where(filter).FirstOrDefaultAsync();
         }
 
-        public async Task<Category> GetWithSubCatAsync()
+        public async Task<Category> GetCategoryBySubCatIdAsync(int id)
         {
             using var context = new MyContext();
             return await context.Categories.Join(context.SubCategories, category => category.Id, subCategory => subCategory.CategoryId, (categoryResult, subCategoryResult) => new
@@ -27,7 +27,7 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories
                 category = categoryResult,
                 subCategory = subCategoryResult
 
-            }).Where(x => x.subCategory.Id == 1008).Select(x => new Category
+            }).Where(x => x.subCategory.Id == id).Select(x => new Category
             {
                 Id = x.category.Id,
                 Name = x.category.Name

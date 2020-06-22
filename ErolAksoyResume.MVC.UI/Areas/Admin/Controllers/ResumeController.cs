@@ -74,22 +74,25 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> Edit(int id)
-        {   
+        {
             //var selectedCategory = _subCategoryService.GetByFilterAsync(x=>x.Category.SubCategories.)
             //_categoryService.GetWithAllProp(x=>x.Id == x.SubCategories.CategoryId)
-            var updatedResume = await _resumeService.GetByIdAsync(id);
-            var deneme = await _categoryService.GetWithSubCatAsync();
-            ViewBag.Deneme = deneme.Name;
             //TODO : Düzenleme ekranında kategori ve alt kategorilerin listelenmesi ve seçilmesi sağlanacak. 
             //Kategoriyi sub kategorilerle birlikte getirmeyi dene
             //var activeCategory = await _subCategoryService.GetSubCategoryWithCategoryAsync();
             //var category = activeCategory.Where(x => x.CategoryId == updatedResume.SubCategory.CategoryId).FirstOrDefault();
+
+            var updatedResume = await _resumeService.GetByIdAsync(id);
+            var activecategory = await _categoryService.GetCategoryBySubCatIdAsync(updatedResume.SubCategoryId);
+            ViewBag.Deneme = activecategory.Name;
+            ViewBag.SubCatId = updatedResume.SubCategoryId;
             
             if (updatedResume != null)
             {
                 ViewBag.SubCategory = updatedResume.SubCategoryId;
                 var resume = _mapper.Map<ResumeUpdateDto>(updatedResume);
-                resume.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", updatedResume.SubCategoryId);
+                resume.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activecategory.Id);
+                ViewBag.SubCatList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activecategory.Id),"Id","Name",updatedResume.SubCategoryId);
                 return View(resume);
             }
             return BadRequest();

@@ -11,6 +11,6 @@ namespace ErolAksoyResume.Dal.Interfaces
     {
         Task<Category> GetWithAllProp(Expression<Func<Category,bool>> filter);
 
-        Task<Category> GetWithSubCatAsync();
+        Task<Category> GetCategoryBySubCatIdAsync(int id);
     }
 }

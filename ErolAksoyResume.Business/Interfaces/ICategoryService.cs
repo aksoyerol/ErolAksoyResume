@@ -10,6 +10,6 @@ namespace ErolAksoyResume.Business.Interfaces
     public interface ICategoryService : IGenericService<Category>
     {
         Task<Category> GetWithAllProp(Expression<Func<Category, bool>> filter);
-        Task<Category> GetWithSubCatAsync();
+        Task<Category> GetCategoryBySubCatIdAsync(int id);
     }
 }

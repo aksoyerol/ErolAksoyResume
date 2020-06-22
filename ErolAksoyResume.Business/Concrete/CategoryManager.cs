@@ -22,9 +22,9 @@ namespace ErolAksoyResume.Business.Concrete
             return await _categoryDal.GetWithAllProp(filter);
         }
 
-        public async Task<Category> GetWithSubCatAsync()
+        public async Task<Category> GetCategoryBySubCatIdAsync(int id)
         {
-            return await _categoryDal.GetWithSubCatAsync();
+            return await _categoryDal.GetCategoryBySubCatIdAsync(id);
         }
     }
 }
