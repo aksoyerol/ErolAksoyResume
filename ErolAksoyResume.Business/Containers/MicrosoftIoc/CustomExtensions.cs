@@ -49,6 +49,7 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
             services.AddTransient<IValidator<SubCategoryAddDto>, SubCategoryAddDtoValidator>();
             services.AddTransient<IValidator<SubCategoryUpdateDto>, SubCategoryUpdateDtoValidator>();
             services.AddTransient<IValidator<ResumeAddDto>, ResumeAddDtoValidator>();
+            services.AddTransient<IValidator<ResumeUpdateDto>, ResumeUpdateDtoValidator>();
         }
     }
 }

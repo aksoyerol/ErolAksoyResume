@@ -32,6 +32,8 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<ResumeListDto, Resume>();
             CreateMap<Resume, ResumeAddDto>();
             CreateMap<ResumeAddDto, Resume>();
+            CreateMap<Resume, ResumeUpdateDto>();
+            CreateMap<ResumeUpdateDto, Resume>();
         }
     }
 }

@@ -21,5 +21,10 @@ namespace ErolAksoyResume.Business.Concrete
         {
             return _resumeDal.GetListWithAllProp();
         }
+
+        public Task<Resume> GetSingleWithAllProp(Expression<Func<Resume, bool>> filter)
+        {
+            return _resumeDal.GetSingleWithAllProp(filter);
+        }
     }
 }

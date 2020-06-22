@@ -10,5 +10,6 @@ namespace ErolAksoyResume.Business.Interfaces
     public interface IResumeService : IGenericService<Resume>
     {
         Task<List<Resume>> GetListWithAllProp();
+        Task<Resume> GetSingleWithAllProp(Expression<Func<Resume, bool>> filter);
     }
 }

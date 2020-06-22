@@ -6,9 +6,9 @@ using System.Text;
 
 namespace ErolAksoyResume.Business.ValidationRules.FluentValidation.ResumeDtoValidator
 {
-    public class ResumeAddDtoValidator : AbstractValidator<ResumeAddDto>
+    public class ResumeUpdateDtoValidator : AbstractValidator<ResumeUpdateDto>
     {
-        public ResumeAddDtoValidator()
+        public ResumeUpdateDtoValidator()
         {
             RuleFor(x => x.Title).NotNull().WithMessage("Title area cannot be null !");
             RuleFor(x => x.Text).NotNull().WithMessage("Text area cannot be null !");

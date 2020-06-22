@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-   
+
 
 <div class="card-header">
     <a class="btn btn-info col-md-12 font-weight-bold" asp-action="Create" asp-controller="Resume">New Resume</a>
@@ -43,8 +43,8 @@
                     <tr>
                         <td>@item.Title</td>
                         <td>@item.Text</td>
-                        <td>@item.StartedDate.Value.ToString("dd/MM/yyyy")</td>
-                        <td>@item.EndedDate.Value.ToString("dd/MM/yyyy")</td>
+                        <td>@item.StartedDate</td>
+                        <td>@item.EndedDate</td>
                         <td>
                             @if (item.IsDraft == true)
                             {
@@ -104,7 +104,7 @@
 
                     $.ajax({
                         type: "Get",
-                        url: "./SubCategory/Delete",
+                        url: "./Resume/Delete",
                         data: { id: id },
                         dataType: "json",
                         contentType: "application/json; charset=utf-8;",
@@ -124,7 +124,6 @@
 
 
     </script>
-
-
 }
+
 
