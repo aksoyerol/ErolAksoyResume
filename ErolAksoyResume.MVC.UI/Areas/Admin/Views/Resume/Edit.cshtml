@@ -4,63 +4,91 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
 }
-
-<link href="~/jqueryui/jquery-ui.min.css" rel="stylesheet" />
-
-<div class="row">
-    <div class="col-md-10">
+@section Css{
+    <link href="~/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+}
+<h5>Ana Kategorisi : @ViewBag.Deneme</h5>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">Editing (@Model.Title) Resume</h5>
+        <hr class="dropdown-divider" />
+        <br />
         <form asp-action="Edit" asp-controller="Resume" method="post">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
-            <input type="hidden" asp-for="@Model.Id" />
-
-            <div class="form-group">
-                <label class="d-inline" asp-for="@Model.Title"></label> :
-                <span class="text-danger" asp-validation-for="@Model.Title"></span>
-                <input type="text" class="form-control w-25" asp-for="@Model.Title" />
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.Title" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input placeholder="Title" class="form-control" asp-for="@Model.Title">
+                    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="@Model.Text"></label>
-                <span class="text-danger" asp-validation-for="@Model.Text"></span>
-                <input type="text" class="form-control" asp-for="@Model.Text" />
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.Text" class="col-sm-2 col-form-label">Text</label>
+                <div class="col-sm-10">
+                    <input placeholder="Text" class="form-control" asp-for="@Model.Text">
+                    <span asp-validation-for="@Model.Text" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="@Model.StartedDate"></label>
-                <span class="text-danger" asp-validation-for="@Model.StartedDate"></span>
-                <input type="text" id="datepicker" class="form-control" asp-for="@Model.StartedDate" />
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.StartedDate" class="col-sm-2 col-form-label">Started Date</label>
+                <div class="col-sm-10">
+                    <input autocomplete="off" placeholder="Started Date" id="datepicker" class="form-control" asp-for="@Model.StartedDate">
+                    <span asp-validation-for="@Model.StartedDate" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="@Model.EndedDate"></label>
-                <span class="text-danger" asp-validation-for="@Model.EndedDate"></span>
-                <input type="text" id="datepicker2" class="form-control" asp-for="@Model.EndedDate" />
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.EndedDate" class="col-sm-2 col-form-label">Ended Date</label>
+                <div class="col-sm-10">
+                    <input autocomplete="off" id="datepicker2" placeholder="Ended Date" class="form-control" asp-for="@Model.EndedDate">
+                    <span asp-validation-for="@Model.EndedDate" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="@Model.IsDraft"></label>
-                <span class="text-danger" asp-validation-for="@Model.IsDraft"></span>
-                <input type="checkbox" class="custom-checkbox" asp-for="@Model.IsDraft" />
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.CategoryId" class="col-sm-2 col-form-label">Base Category</label>
+                <div class="col-sm-10">
+                    <select id="CategoryId" class=" form-control" asp-items="@Model.CategoryList">
+                        <option hidden value="-1">-- Select Base Category --</option>
+                    </select>
+                    <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Base Category</label> &nbsp;
-                <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
-                <select id="CategoryId" asp-for="@Model.CategoryId" asp-items="@Model.CategoryList" class="form-control">
-                </select>
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.CategoryId" class="col-sm-2 col-form-label">Sub Category</label>
+                <div class="col-sm-10">
+                    <select id="SubCategoryId" asp-for="@Model.SubCategoryId" asp-items="@(new SelectList(string.Empty,"Id","Name"))" class="form-control">
+                    </select>
+                    <span asp-validation-for="@Model.SubCategoryId" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Sub Category</label> &nbsp;
-                <span asp-validation-for="@Model.SubCategoryId" class="text-danger"></span>
-                <select id="SubCategoryId" asp-for="@Model.SubCategoryId" asp-items="@(new SelectList("","Id","Name"))" class="form-control">
-                </select>
+
+
+            <div class="custom-checkbox row custom-control form-group">
+                <div class="col-md-4">
+                    <input type="checkbox" id="exampleCustomCheckbox" asp-for="@Model.IsDraft" class="custom-control-input">
+                    <label class="custom-control-label" for="exampleCustomCheckbox">
+                        Add to Draft
+                    </label>
+
+                </div>
             </div>
 
-            <a asp-action="Index" asp-controller="Resume" class="btn btn-warning col-md-5 offset-1">Cancel</a>
-            <button type="submit" class="btn btn-primary col-md-5">Save</button>
+            <div class="position-relative row">
+                <button type="submit" class="btn btn-primary col-md-6 ">Save</button>
+                <a asp-action="Index" asp-controller="Resume" class="btn btn-warning col-md-6 float-right">Cancel</a>
+                @*<div class="col-sm-10 offset-sm-2">
+                        <button class="btn btn-secondary">Submit</button>
+                    </div>*@
+            </div>
         </form>
     </div>
+
 </div>
 @section JavaScript{
     <script src="~/jqueryui/jquery-ui.min.js"></script>
@@ -96,8 +124,10 @@
     <script>
         $(document).ready(function () {
             $("#datepicker").datepicker({
+                yearRange: 'c-20:c+10',
                 changeYear: true,
                 changeMonth: true,
+                
 
             });
 
@@ -108,6 +138,7 @@
     <script>
         $(document).ready(function () {
             $("#datepicker2").datepicker({
+                yearRange: 'c-20:c+10',
                 changeYear: true,
                 changeMonth: true,
 

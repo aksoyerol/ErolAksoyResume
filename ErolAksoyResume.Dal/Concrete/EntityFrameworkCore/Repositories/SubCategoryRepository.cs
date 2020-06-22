@@ -4,6 +4,7 @@ using ErolAksoyResume.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories
         public async Task<List<SubCategory>> GetSubCategoryWithCategoryAsync()
         {
             using var context = new MyContext();
+            
             return await context.SubCategories.Include(x => x.Category).ToListAsync();
         }
     }

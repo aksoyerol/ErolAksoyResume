@@ -3,11 +3,10 @@
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<link href="~/jqueryui/jquery-ui.min.css" rel="stylesheet" />
 
-
-
-
+@section Css{
+    <link href="~/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+}
 
 <div class="main-card mb-3 card">
     <div class="card-body">
@@ -28,7 +27,7 @@
             <div class="position-relative row form-group">
                 <label asp-for="@Model.Text" class="col-sm-2 col-form-label">Text</label>
                 <div class="col-sm-10">
-                    <input  placeholder="Text" class="form-control" asp-for="@Model.Text">
+                    <input placeholder="Text" class="form-control" asp-for="@Model.Text">
                     <span asp-validation-for="@Model.Text" class="text-danger"></span>
                 </div>
             </div>
@@ -36,7 +35,7 @@
             <div class="position-relative row form-group">
                 <label asp-for="@Model.StartedDate" class="col-sm-2 col-form-label">Started Date</label>
                 <div class="col-sm-10">
-                    <input placeholder="Started Date" id="datepicker" class="form-control" asp-for="@Model.StartedDate">
+                    <input autocomplete="off" placeholder="Started Date" id="datepicker" class="form-control" asp-for="@Model.StartedDate">
                     <span asp-validation-for="@Model.StartedDate" class="text-danger"></span>
                 </div>
             </div>
@@ -44,7 +43,7 @@
             <div class="position-relative row form-group">
                 <label asp-for="@Model.EndedDate" class="col-sm-2 col-form-label">Ended Date</label>
                 <div class="col-sm-10">
-                    <input id="datepicker2" placeholder="Ended Date" class="form-control" asp-for="@Model.EndedDate">
+                    <input autocomplete="off" id="datepicker2" placeholder="Ended Date" class="form-control" asp-for="@Model.EndedDate">
                     <span asp-validation-for="@Model.EndedDate" class="text-danger"></span>
                 </div>
             </div>
@@ -80,9 +79,7 @@
                 </div>
             </div>
 
-
-
-            <div class="position-relative row form-check">
+            <div class="position-relative row">
                 <button type="submit" class="btn btn-primary col-md-6 ">Save</button>
                 <a asp-action="Index" asp-controller="Resume" class="btn btn-warning col-md-6 float-right">Cancel</a>
                 @*<div class="col-sm-10 offset-sm-2">
@@ -91,7 +88,6 @@
             </div>
         </form>
     </div>
-
 
 </div>
 
