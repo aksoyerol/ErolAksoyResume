@@ -1,11 +1,9 @@
 ﻿
-@{ 
-    string active = string.Empty;
-    if (TempData["active"] != null)
-    {
-        active = TempData["active"].ToString();
-    }
-}
+@{ string active = string.Empty;
+                if (TempData["active"] != null)
+                {
+                    active = TempData["active"].ToString();
+                } }
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -26,7 +24,9 @@
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="~/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    @RenderSection("Css",false)
+    <link href="~/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+
+    @RenderSection("Css", false)
 </head>
 
 <body id="page-top">
@@ -79,6 +79,12 @@
                 </div>
             </li>
 
+            <li class="nav-item @(active=="profile"?"active bg-info":"")">
+                <a class="nav-link" asp-action="Index" asp-controller="Profile">
+                    <i class="fa fa-fw fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo-1" aria-expanded="true" aria-controls="collapseTwo-1">
@@ -419,13 +425,15 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin-2.min.js"></script>
-
+    <script src="~/font-awesome/js/fontawesome.min.js"></script>
     <!-- Page level plugins -->
     <script src="~/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="~/js/demo/chart-area-demo.js"></script>
     <script src="~/js/demo/chart-pie-demo.js"></script>
+
+
     @RenderSection("JavaScript", false)
 
 </body>

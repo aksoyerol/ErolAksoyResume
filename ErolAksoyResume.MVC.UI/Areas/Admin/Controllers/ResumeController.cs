@@ -116,8 +116,11 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
+            var activeCategory = await _categoryService.GetCategoryBySubCatIdAsync(resumeUpdateDto.SubCategoryId);
+            resumeUpdateDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activeCategory.Id);
+            ViewBag.SubCatList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activeCategory.Id), "Id", "Name", resumeUpdateDto.SubCategoryId);
 
-            resumeUpdateDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", resumeUpdateDto.SubCategoryId);
+
             return View(resumeUpdateDto);
         }
 
