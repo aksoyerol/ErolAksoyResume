@@ -42,5 +42,11 @@ namespace ErolAksoyResume.MVC.UI.Controllers
             return View(model);
 
         }
+
+        public async Task<IActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

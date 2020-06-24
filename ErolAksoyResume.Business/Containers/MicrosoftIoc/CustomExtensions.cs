@@ -3,11 +3,13 @@ using ErolAksoyResume.Business.Interfaces;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.AppUserDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.ResumeDtoValidator;
+using ErolAksoyResume.Business.ValidationRules.FluentValidation.SkillDtoValidator;
 using ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories;
 using ErolAksoyResume.Dal.Interfaces;
 using ErolAksoyResume.Dto.Concrete.AppUserDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
+using ErolAksoyResume.Dto.Concrete.SkillDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,6 +55,7 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
             services.AddTransient<IValidator<ResumeAddDto>, ResumeAddDtoValidator>();
             services.AddTransient<IValidator<ResumeUpdateDto>, ResumeUpdateDtoValidator>();
             services.AddTransient<IValidator<AppUserSignInDto>, AppUserSignInDtoValidator>();
+            services.AddTransient<IValidator<SkillAddDto>, SkillAddDtoValidator>();
         }
     }
 }

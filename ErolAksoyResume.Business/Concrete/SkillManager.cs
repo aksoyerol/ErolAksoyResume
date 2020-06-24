@@ -4,14 +4,21 @@ using ErolAksoyResume.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ErolAksoyResume.Business.Concrete
 {
     public class SkillManager : GenericManager<Skill>,ISkillService
     {
-        public SkillManager(IGenericDal<Skill> genericDal) : base(genericDal)
+        private readonly ISkillDal _skillDal;
+        public SkillManager(IGenericDal<Skill> genericDal,ISkillDal skillDal) : base(genericDal)
         {
+            _skillDal = skillDal;
+        }
 
+        public Task<List<Skill>> GetListAllPropAsync()
+        {
+            return _skillDal.GetListAllPropAsync();
         }
     }
 }

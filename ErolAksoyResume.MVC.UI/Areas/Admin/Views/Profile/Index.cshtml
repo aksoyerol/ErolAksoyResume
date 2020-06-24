@@ -21,7 +21,7 @@
             <br />
             <div class="tab-content p-b-3">
                 <div class="tab-pane active" id="profile">
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <h6><b>About</b></h6>
@@ -41,7 +41,7 @@
                             <h6><i class="fab fa-github fa-2x"></i>&nbsp;eaksoy113</h6>
                             <h6><i class="fab fa-medium fa-2x"></i>&nbsp;eaksoy113</h6>
                         </div>
-             
+
                     </div>
                     <!--/row-->
                 </div>
@@ -77,6 +77,7 @@
                 </div>
                 <div class="tab-pane" id="edit">
                     <h4 class="m-y-2">Edit Profile</h4>
+                    <!--Form-->
                     <form role="form">
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">First name</label>
@@ -87,13 +88,13 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" >
+                                <input class="form-control" type="text">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="email" >
+                                <input class="form-control" type="email">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -111,7 +112,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Address</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text"  placeholder="Street">
+                                <input class="form-control" type="text" placeholder="Street">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -123,11 +124,11 @@
                                 <input class="form-control" type="text" value="" placeholder="State">
                             </div>
                         </div>
-                    
+
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Username</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" >
+                                <input class="form-control" type="text">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -139,7 +140,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="password" >
+                                <input class="form-control" type="password">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -150,18 +151,47 @@
                             </div>
                         </div>
                     </form>
+                    <!--endForm-->
                 </div>
             </div>
         </div>
         <div class="col-lg-4 pull-lg-8 text-xs-center">
             <img src="//placehold.it/300" class="m-x-auto img-fluid rounded-circle" alt="avatar">
-            <h6 class="m-t-2">Upload a different photo</h6>
-            <div class="custom-control-input">
-                <input type="file" id="file" class="custom-file-input">
+
+            <h6 class="mt-2">Upload a different photo</h6>
+            @*<div class="custom-control-input">*@
+            <input type="file" value="Browse Photo" id="photoUpload" />
+            @*</div>*@
+            <span id="chooseFile" class="custom-file-control">Choose file</span>
+            
+            <div id="buttons" class="mt-3">
+                <a id="cancel" class="btn btn-warning">Cancel</a>
+                <button id="save" class="btn btn-success" type="submit">Save</button>
             </div>
-                <span class="custom-file-control">Choose file</span>
-           
         </div>
     </div>
 </div>
 <hr>
+
+@section JavaScript{
+    <script>
+        $("#buttons").hide();
+        //$("#save").hide();
+        $(document).ready(function () {
+         
+
+            $("#photoUpload").change(function () {
+                $("#chooseFile").hide();
+                //$("#cancel").show();
+                $("#buttons").show();
+            });
+
+            $("#cancel").on("click", function () {
+                window.location.reload();
+            });
+            
+
+        });
+    </script>
+
+}

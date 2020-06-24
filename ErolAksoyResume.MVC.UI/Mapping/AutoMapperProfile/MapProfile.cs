@@ -2,6 +2,7 @@
 using ErolAksoyResume.Dto.Concrete.AppUserDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
+using ErolAksoyResume.Dto.Concrete.SkillDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
 using ErolAksoyResume.Entities.Concrete;
 using System;
@@ -39,6 +40,10 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<AppUser, AppUserSignInDto>();
             CreateMap<AppUserSignInDto, AppUser>();
 
+            CreateMap<Skill, SkillAddDto>();
+            CreateMap<SkillAddDto, Skill>();
+            CreateMap<Skill, SkillGeneralDto>();
+            CreateMap<SkillGeneralDto, Skill>();
         }
     }
 }
