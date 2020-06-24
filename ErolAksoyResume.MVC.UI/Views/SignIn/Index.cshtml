@@ -1,0 +1,26 @@
+﻿@model AppUserSignInDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<form asp-action="Index" asp-controller="SignIn">
+
+    <div class="form-group">
+
+        <label>Username : </label>
+        <span asp-validation-for="@Model.UserName"></span>
+        <input type="text" asp-for="@Model.UserName" />
+
+    </div>
+
+    <div class="form-group">
+        <label>Password :</label>
+        <span asp-validation-for="@Model.Password"></span>
+        <input type="password" asp-for="@Model.Password"/>
+    </div>
+    <div asp-validation-summary="All"></div>
+
+    <button class="submit">Login</button>
+
+</form>

@@ -1,5 +1,6 @@
 ﻿using ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Mapping;
 using ErolAksoyResume.Entities.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,10 @@ using System.Text;
 
 namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Context
 {
-    public class MyContext : DbContext
+    public class MyContext : IdentityDbContext<AppUser,AppRole,int>
     {
+        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("SERVER=EROL; Database=ErolAksoyDb; Integrated Security=true;");

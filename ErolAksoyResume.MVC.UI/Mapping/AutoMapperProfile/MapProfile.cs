@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ErolAksoyResume.Dto.Concrete.AppUserDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
@@ -34,6 +35,10 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<ResumeAddDto, Resume>();
             CreateMap<Resume, ResumeUpdateDto>();
             CreateMap<ResumeUpdateDto, Resume>();
+
+            CreateMap<AppUser, AppUserSignInDto>();
+            CreateMap<AppUserSignInDto, AppUser>();
+
         }
     }
 }

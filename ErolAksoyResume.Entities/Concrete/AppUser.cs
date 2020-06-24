@@ -1,19 +1,17 @@
 ﻿using ErolAksoyResume.Entities.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ErolAksoyResume.Entities.Concrete
 {
-    public class AppUser : ITable
+    public class AppUser : IdentityUser<int>, ITable
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
         public string ProfileImageUrl { get; set; }
         public string CvLinkUrl { get; set; }
-        public string UserName { get; set; }
         public string Phone { get; set; }
         public string About { get; set; }
         public string Status { get; set; }
@@ -26,6 +24,6 @@ namespace ErolAksoyResume.Entities.Concrete
         public string Medium { get; set; }
 
         public List<Blog> Blogs { get; set; }
-        
+
     }
 }
