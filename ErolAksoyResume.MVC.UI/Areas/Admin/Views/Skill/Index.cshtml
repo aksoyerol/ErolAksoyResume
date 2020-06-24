@@ -16,6 +16,7 @@
                 <tr class="table-info">
                     <th>Title</th>
                     <th>Text</th>
+                    <th>Level Percent</th>
                     <th>Draft</th>
                     <th>Sub Category</th>
                     <th>Panel</th>
@@ -27,7 +28,7 @@
 
                     <th>Title</th>
                     <th>Text</th>
-                    
+                    <th>Level Percent</th>
                     <th>Draft</th>
                     <th>Sub Category</th>
                     <th>Panel</th>
@@ -40,7 +41,7 @@
                     <tr>
                         <td>@item.Title</td>
                         <td>@item.Text</td>
-                      
+                        <td>%@item.LevelPercent</td>
                         <td>
                             @if (item.IsDraft == true)
                             {
@@ -100,7 +101,7 @@
 
                     $.ajax({
                         type: "Get",
-                        url: "./Resume/Delete",
+                        url: "./Skill/Delete",
                         data: { id: id },
                         dataType: "json",
                         contentType: "application/json; charset=utf-8;",

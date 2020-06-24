@@ -56,6 +56,7 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
             services.AddTransient<IValidator<ResumeUpdateDto>, ResumeUpdateDtoValidator>();
             services.AddTransient<IValidator<AppUserSignInDto>, AppUserSignInDtoValidator>();
             services.AddTransient<IValidator<SkillAddDto>, SkillAddDtoValidator>();
+            services.AddTransient<IValidator<SkillGeneralDto>, SkillGeneralDtoValidator>();
         }
     }
 }
