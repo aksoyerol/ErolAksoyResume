@@ -16,6 +16,7 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Mapping
             builder.Property(x => x.Title).IsRequired();
             builder.Property(x => x.Text).HasColumnType("ntext");
             builder.Property(x => x.ImageUrl).HasMaxLength(100);
+            builder.HasOne(x => x.SubCategory).WithMany(x => x.Portofolios).HasForeignKey(x => x.SubCategoryId);
         }
     }
 }

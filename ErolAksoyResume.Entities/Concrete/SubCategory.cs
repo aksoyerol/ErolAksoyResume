@@ -9,11 +9,10 @@ namespace ErolAksoyResume.Entities.Concrete
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-
         public List<Resume> Resumes { get; set; }
         public List<Skill> Skills { get; set; }
+        public List<Portofolio> Portofolios { get; set; }
     }
 }

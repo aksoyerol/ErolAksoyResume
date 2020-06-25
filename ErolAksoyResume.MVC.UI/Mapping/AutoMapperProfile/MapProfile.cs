@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ErolAksoyResume.Dto.Concrete.AppUserDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
+using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
 using ErolAksoyResume.Dto.Concrete.SkillDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
@@ -44,6 +45,11 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<SkillAddDto, Skill>();
             CreateMap<Skill, SkillGeneralDto>();
             CreateMap<SkillGeneralDto, Skill>();
+
+            CreateMap<Portofolio, PortofolioAddDto>();
+            CreateMap<PortofolioAddDto, Portofolio>();
+            CreateMap<Portofolio, PortofolioGeneralDto>();
+            CreateMap<PortofolioGeneralDto, Portofolio>();
         }
     }
 }

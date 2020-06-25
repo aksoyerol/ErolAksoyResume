@@ -107,7 +107,13 @@
                     <span>Resume</span>
                 </a>
             </li>
-            
+
+            <li class="nav-item @(active=="portofolio"?"active bg-info":"")">
+                <a class="nav-link" asp-action="Index" asp-controller="Portofolio">
+                    <i class="fas fa-fw fa-align-right"></i>
+                    <span>Portofolio</span>
+                </a>
+            </li>
 
             <li class="nav-item @(active=="skill"?"active bg-info":"")">
                 <a class="nav-link" asp-action="Index" asp-controller="Skill">

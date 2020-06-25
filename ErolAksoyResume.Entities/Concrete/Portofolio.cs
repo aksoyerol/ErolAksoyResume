@@ -11,6 +11,8 @@ namespace ErolAksoyResume.Entities.Concrete
         public string Title { get; set; }
         public string Text { get; set; }
         public string ImageUrl { get; set; }
+        public int SubCategoryId { get; set; }
+        public SubCategory SubCategory { get; set; }
 
     }
 }

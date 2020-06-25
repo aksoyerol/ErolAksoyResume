@@ -1,0 +1,111 @@
+﻿@model PortofolioAddDto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">Creating New Portofolio</h5>
+        <hr class="dropdown-divider" />
+        <br />
+        <form asp-action="Create" asp-controller="Portofolio" method="post" enctype="multipart/form-data">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.Title" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input placeholder="Title" class="form-control" asp-for="@Model.Title">
+                    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.Text" class="col-sm-2 col-form-label">Text</label>
+                <div class="col-sm-10">
+                    <textarea id="editor1" class="form-control" asp-for="Text"></textarea>
+                    <span asp-validation-for="@Model.Text" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.ImageUrl" class="col-sm-2 col-form-label">Image</label>
+                <div class="col-sm-10">
+                    <input type="file" name="imgFile" accept=".jpg,.png,.jpeg" class="form-control" asp-for="@Model.ImageUrl">
+                    <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.CategoryId" class="col-sm-2 col-form-label">Base Category</label>
+                <div class="col-sm-10">
+                    <select id="CategoryId" class=" form-control" asp-items="@Model.CategoryList">
+                        <option hidden value="-1">-- Select Base Category --</option>
+                    </select>
+                    <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label asp-for="@Model.SubCategoryId" class="col-sm-2 col-form-label">Sub Category</label>
+                <div class="col-sm-10">
+                    <span asp-validation-for="@Model.SubCategoryId" class="text-danger"></span>
+                    <select id="SubCategoryId" asp-for="@Model.SubCategoryId" asp-items="@(new SelectList(string.Empty,"Id","Title"))" class="form-control">
+                    </select>
+                </div>
+            </div>
+
+            <div class="position-relative row">
+                <button type="submit" class="btn btn-primary col-md-6 ">Save</button>
+                <a asp-action="Index" asp-controller="Portofolio" class="btn btn-warning col-md-6 float-right">Cancel</a>
+                @*<div class="col-sm-10 offset-sm-2">
+                        <button class="btn btn-secondary">Submit</button>
+                    </div>*@
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+@section JavaScript{
+    <script src="~/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#SubCategoryId").attr("disabled", "disabled");
+
+            $("#CategoryId").on("change", function () {
+                $("#SubCategoryId").removeAttr("disabled");
+                $listSelect = $("#SubCategoryId");
+                $.ajax({
+                    url: "./GetSubCategories",
+                    data: { id: $("#CategoryId").val() },
+                    dataType: "json",
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        $listSelect.empty();
+                        $.each(result, function (i, item) {
+                            $listSelect.append('<option value="' + item.value + '"> ' + item.text + ' </option>');
+                        });
+                    }
+                });
+            });
+        })
+
+
+    </script>
+
+    <script>
+        CKEDITOR.replace('Text');
+    </script>
+
+}

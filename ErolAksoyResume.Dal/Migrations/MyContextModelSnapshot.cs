@@ -236,6 +236,9 @@ namespace ErolAksoyResume.Dal.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .HasColumnType("ntext");
 
@@ -244,6 +247,8 @@ namespace ErolAksoyResume.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Portofolios");
                 });
@@ -512,6 +517,15 @@ namespace ErolAksoyResume.Dal.Migrations
                     b.HasOne("ErolAksoyResume.Entities.Concrete.AppUser", "AppUser")
                         .WithMany("Blogs")
                         .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ErolAksoyResume.Entities.Concrete.Portofolio", b =>
+                {
+                    b.HasOne("ErolAksoyResume.Entities.Concrete.SubCategory", "SubCategory")
+                        .WithMany("Portofolios")
+                        .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
