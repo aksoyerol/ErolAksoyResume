@@ -40,7 +40,8 @@
                     <tr>
                         <td>@item.Title</td>
                         <td>@Html.Raw(@item.Text)</td>
-                        <td><img src="~/img/portofolio/@item.ImageUrl" width="200" height="200" class="img-fluid"/></td>
+                        <td><img src="~/img/portofolio/@item.ImageUrl" width="200" height="200" class="img-fluid" /></td>
+                        <td>@item.SubCategory.Name</td>
                         <td>
                             <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit">&nbsp;</i>Edit</a>
                             <a data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-sm" asp-action="Delete" data-id="@item.Id"><i class="fa fa-trash">&nbsp;</i>Delete</a>
@@ -77,4 +78,36 @@
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="~/js/datatables.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#deleteModal").on("show.bs.modal", function (event) {
+                let trigger = $(event.relatedTarget);
+                let id = trigger.data("id");
+
+                $("#btnDelete").click(function () {
+
+                    $.ajax({
+                        type: "Get",
+                        url: "./Portofolio/Delete",
+                        data: { id: id },
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8;",
+                        success: function () {
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            alert(error.statusText);
+                        }
+
+                    });
+                });
+
+            });
+
+        });
+
+
+    </script>
 }

@@ -21,7 +21,7 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
         private readonly ICategoryService _categoryService;
         private readonly ISubCategoryService _subCategoryService;
         private readonly IMapper _mapper;
-        
+
         public PortofolioController(IPortofolioService portofolioService, ICategoryService categoryService,
             ISubCategoryService subCategoryService, IMapper mapper)
         {
@@ -33,7 +33,7 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<List<PortofolioGeneralDto>>(await _portofolioService.GetListAsync()));
+            return View(_mapper.Map<List<PortofolioGeneralDto>>(await _portofolioService.GetListWithAllPropAsync()));
         }
 
         public async Task<JsonResult> GetSubCategories(int id)
@@ -52,23 +52,21 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(PortofolioAddDto portofolioAddDto, IFormFile imgFile,[FromServices] IWebHostEnvironment webHostEnvironment)
+        public async Task<IActionResult> Create(PortofolioAddDto portofolioAddDto, IFormFile imgFile, [FromServices] IWebHostEnvironment webHostEnvironment)
         {
             if (ModelState.IsValid)
             {
                 if (imgFile != null && (imgFile.ContentType == "image/jpg" || imgFile.ContentType == "image/png" || imgFile.ContentType == "image/jpeg"))
                 {
-                    var filePath = Path.Combine(webHostEnvironment.WebRootPath+"/img/portofolio");
+                    var filePath = Path.Combine(webHostEnvironment.WebRootPath + "/img/portofolio");
+
                     if (!Directory.Exists(filePath))
                     {
                         Directory.CreateDirectory(filePath);
                     }
-
                     var imgExtension = Path.GetExtension(imgFile.FileName);
                     string imgName = Guid.NewGuid().ToString() + imgExtension;
-                    
-                    
-                   
+
                     string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/portofolio/" + imgName);
 
                     using (var stream = new FileStream(path, FileMode.Create))
@@ -77,6 +75,10 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
                     }
                     portofolioAddDto.ImageUrl = imgName;
 
+                }
+                else
+                {
+                    portofolioAddDto.ImageUrl = "no-image.png";
                 }
 
                 await _portofolioService.InsertAsync(new Portofolio
@@ -88,10 +90,91 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
                 });
 
                 return RedirectToAction("Index");
-
             }
+
             portofolioAddDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name");
             return View(portofolioAddDto);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var editedPortofolio = await _portofolioService.GetByIdAsync(id);
+            if (editedPortofolio != null)
+            {
+                var activeCategory = await _categoryService.GetCategoryBySubCatIdAsync(editedPortofolio.SubCategoryId);
+
+                var portofolio = _mapper.Map<PortofolioGeneralDto>(editedPortofolio);
+                portofolio.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activeCategory.Id);
+                portofolio.SubCategoryList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activeCategory.Id), "Id", "Name", editedPortofolio.SubCategoryId);
+                return View(portofolio);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(PortofolioGeneralDto portofolioGeneralDto, IFormFile imgFile, [FromServices] IWebHostEnvironment webHostEnvironment)
+        {
+            if (ModelState.IsValid)
+            {
+                if (imgFile != null /*&& (imgFile.ContentType == "image/jpg" || imgFile.ContentType == "image/png" || imgFile.ContentType == "image/jpeg")*/)
+                {
+                    
+                    var filePath = Path.Combine(webHostEnvironment.WebRootPath + "/img/portofolio");
+                    
+                    if (!Directory.Exists(filePath))
+                    {
+                        Directory.CreateDirectory(filePath);
+                    }
+                    var imgExtension = Path.GetExtension(imgFile.FileName);
+                    string imgName = Guid.NewGuid().ToString() + imgExtension;
+
+                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/portofolio/" + imgName);
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await imgFile.CopyToAsync(stream);
+                    }
+                    portofolioGeneralDto.ImageUrl = imgName;
+                }
+                else
+                {
+                    var updatedPortofolioForImageUrl = await _portofolioService.GetByIdAsync(portofolioGeneralDto.Id);
+                    portofolioGeneralDto.ImageUrl = updatedPortofolioForImageUrl.ImageUrl;
+                }
+
+
+                await _portofolioService.UpdateAsync(new Portofolio
+                {
+                    Id = portofolioGeneralDto.Id,
+                    ImageUrl = portofolioGeneralDto.ImageUrl,
+                    SubCategoryId = portofolioGeneralDto.SubCategoryId,
+                    Text = portofolioGeneralDto.Text,
+                    Title = portofolioGeneralDto.Title
+                });
+                return RedirectToAction("Index");
+            }
+            var activeCategory = await _categoryService.GetCategoryBySubCatIdAsync(portofolioGeneralDto.SubCategoryId);
+            portofolioGeneralDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activeCategory.Id);
+            portofolioGeneralDto.SubCategoryList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activeCategory.Id), "Id", "Name", portofolioGeneralDto.SubCategoryId);
+
+            return View(portofolioGeneralDto);
+
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedPortofilo = await _portofolioService.GetByIdAsync(id);
+            if (deletedPortofilo != null)
+            {
+                await _portofolioService.DeleteAsync(deletedPortofilo);
+                return Json(null);
+            }
+            return NotFound();
+        }
+
+
     }
+
+
 }
