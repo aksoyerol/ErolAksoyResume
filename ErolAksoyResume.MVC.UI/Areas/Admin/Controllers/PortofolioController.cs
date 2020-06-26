@@ -7,6 +7,7 @@ using AutoMapper;
 using ErolAksoyResume.Business.Interfaces;
 using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
 using ErolAksoyResume.Entities.Concrete;
+using ErolAksoyResume.MVC.UI.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,7 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
+            TempData["active"] = "portofolio";
             return View(_mapper.Map<List<PortofolioGeneralDto>>(await _portofolioService.GetListWithAllPropAsync()));
         }
 
@@ -45,6 +47,7 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Create()
         {
+            TempData["active"] = "portofolio";
             PortofolioAddDto portofolioAddDto = new PortofolioAddDto();
             portofolioAddDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name");
             return View(portofolioAddDto);
@@ -56,25 +59,10 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (imgFile != null && (imgFile.ContentType == "image/jpg" || imgFile.ContentType == "image/png" || imgFile.ContentType == "image/jpeg"))
+                if (imgFile != null)
                 {
-                    var filePath = Path.Combine(webHostEnvironment.WebRootPath + "/img/portofolio");
-
-                    if (!Directory.Exists(filePath))
-                    {
-                        Directory.CreateDirectory(filePath);
-                    }
-                    var imgExtension = Path.GetExtension(imgFile.FileName);
-                    string imgName = Guid.NewGuid().ToString() + imgExtension;
-
-                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/portofolio/" + imgName);
-
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await imgFile.CopyToAsync(stream);
-                    }
+                    var imgName = await ImageUploadHelper.ImageUploadAsync(webHostEnvironment, imgFile, "\\img\\portofolio");
                     portofolioAddDto.ImageUrl = imgName;
-
                 }
                 else
                 {
@@ -98,6 +86,7 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            TempData["active"] = "portofolio";
             var editedPortofolio = await _portofolioService.GetByIdAsync(id);
             if (editedPortofolio != null)
             {
@@ -119,22 +108,7 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
             {
                 if (imgFile != null /*&& (imgFile.ContentType == "image/jpg" || imgFile.ContentType == "image/png" || imgFile.ContentType == "image/jpeg")*/)
                 {
-                    
-                    var filePath = Path.Combine(webHostEnvironment.WebRootPath + "/img/portofolio");
-                    
-                    if (!Directory.Exists(filePath))
-                    {
-                        Directory.CreateDirectory(filePath);
-                    }
-                    var imgExtension = Path.GetExtension(imgFile.FileName);
-                    string imgName = Guid.NewGuid().ToString() + imgExtension;
-
-                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/portofolio/" + imgName);
-
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await imgFile.CopyToAsync(stream);
-                    }
+                    string imgName = await ImageUploadHelper.ImageUploadAsync(webHostEnvironment, imgFile, "\\img\\portofolio");
                     portofolioGeneralDto.ImageUrl = imgName;
                 }
                 else

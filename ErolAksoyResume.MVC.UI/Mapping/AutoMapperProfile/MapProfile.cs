@@ -5,6 +5,7 @@ using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
 using ErolAksoyResume.Dto.Concrete.SkillDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
+using ErolAksoyResume.Dto.Concrete.TestimionalDtos;
 using ErolAksoyResume.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,11 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<PortofolioAddDto, Portofolio>();
             CreateMap<Portofolio, PortofolioGeneralDto>();
             CreateMap<PortofolioGeneralDto, Portofolio>();
+
+            CreateMap<Testimonial, TestimionalAddDto>();
+            CreateMap<TestimionalAddDto, Testimonial>();
+            CreateMap<Testimonial, TestimionalGeneralDto>();
+            CreateMap<TestimionalGeneralDto, Testimonial>();
         }
     }
 }

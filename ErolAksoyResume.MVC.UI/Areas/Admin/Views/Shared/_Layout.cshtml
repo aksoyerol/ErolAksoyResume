@@ -1,9 +1,9 @@
 ﻿
 @{ string active = string.Empty;
-                if (TempData["active"] != null)
-                {
-                    active = TempData["active"].ToString();
-                } }
+    if (TempData["active"] != null)
+    {
+        active = TempData["active"].ToString();
+    } }
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -83,6 +83,14 @@
                 <a class="nav-link" asp-action="Index" asp-controller="Profile">
                     <i class="fa fa-fw fa-user"></i>
                     <span>Profile</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item @(active=="testimional"?"active bg-info":"")">
+                <a class="nav-link" asp-action="Index" asp-controller="Testimional">
+                    <i class="fa fa-fw fa-comment"></i>
+                    <span>Testimional</span>
                 </a>
             </li>
 
