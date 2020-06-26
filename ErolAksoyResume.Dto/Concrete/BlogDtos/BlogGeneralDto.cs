@@ -13,6 +13,8 @@ namespace ErolAksoyResume.Dto.Concrete.BlogDtos
         public string Text { get; set; }
         public string ImageUrl { get; set; }
         public int AppUserId { get; set; } = 1;
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
         public int SubCategoryId { get; set; }
         public int CategoryId { get; set; }
         public SubCategory SubCategory { get; set; }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ErolAksoyResume.Business.Interfaces;
@@ -71,7 +70,10 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
                     SubCategoryId = blogAddDto.SubCategoryId,
                     ImageUrl = blogAddDto.ImageUrl,
                     Text = blogAddDto.Text,
-                    Title = blogAddDto.Title
+                    Title = blogAddDto.Title,
+                    CreatedDate = DateTime.Now
+                    
+                    
                 });
                 return RedirectToAction("Index");
             }
@@ -118,7 +120,9 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
                     AppUserId = 1,
                     SubCategoryId = blogGeneralDto.SubCategoryId,
                     Text = blogGeneralDto.Text,
-                    Title = blogGeneralDto.Title
+                    Title = blogGeneralDto.Title,
+                    CreatedDate = editedBlog.CreatedDate,
+                    ModifiedDate = DateTime.Now
                 });
                 return RedirectToAction("Index");
             }

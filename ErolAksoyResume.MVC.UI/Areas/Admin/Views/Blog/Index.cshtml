@@ -17,6 +17,8 @@
                     <th>Title</th>
                     <th>Text</th>
                     <th>Image</th>
+                    <th>Created</th>
+                    <th>Modified</th>
                     <th>Sub Category</th>
                     <th>Panel</th>
                 </tr>
@@ -28,6 +30,8 @@
                     <th>Title</th>
                     <th>Text</th>
                     <th>Image</th>
+                    <th>Created</th>
+                    <th>Modified</th>
                     <th>Sub Category</th>
                     <th>Panel</th>
                 </tr>
@@ -50,6 +54,8 @@
                             }
                         </td>
                         <td><img src="~/img/Blog/@item.ImageUrl" style="width:150px; height:auto;" class="img-thumbnail" /></td>
+                        <td>@item.CreatedDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.ModifiedDate.ToString("dd/MM/yyyy HH:mm")</td>
                         <td>@item.SubCategory.Name</td>
                         <td>
                             <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit">&nbsp;</i>Edit</a>
