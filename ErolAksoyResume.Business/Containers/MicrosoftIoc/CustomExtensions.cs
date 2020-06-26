@@ -4,6 +4,7 @@ using ErolAksoyResume.Business.ValidationRules.FluentValidation;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.AppUserDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.BlogDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.PortofolioDtoValidator;
+using ErolAksoyResume.Business.ValidationRules.FluentValidation.ProfileDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.ResumeDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.ServiceDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.SkillDtoValidator;
@@ -14,11 +15,13 @@ using ErolAksoyResume.Dto.Concrete.AppUserDtos;
 using ErolAksoyResume.Dto.Concrete.BlogDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
 using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
+using ErolAksoyResume.Dto.Concrete.ProfileDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
 using ErolAksoyResume.Dto.Concrete.ServiceDtos;
 using ErolAksoyResume.Dto.Concrete.SkillDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
 using ErolAksoyResume.Dto.Concrete.TestimionalDtos;
+using ErolAksoyResume.Entities.Concrete;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -73,6 +76,7 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
             services.AddTransient<IValidator<ServiceGeneralDto>, ServiceGeneralDtoValidator>();
             services.AddTransient<IValidator<BlogAddDto>, BlogAddDtoValidator>();
             services.AddTransient<IValidator<BlogGeneralDto>, BlogGeneralDtoValidator>();
+            services.AddTransient<IValidator<ProfileGeneralDto>, ProfileGeneralDtoValidator>();
         }
     }
 }
