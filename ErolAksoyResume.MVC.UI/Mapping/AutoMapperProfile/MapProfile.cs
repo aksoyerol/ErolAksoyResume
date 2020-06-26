@@ -3,6 +3,7 @@ using ErolAksoyResume.Dto.Concrete.AppUserDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
 using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
+using ErolAksoyResume.Dto.Concrete.ServiceDtos;
 using ErolAksoyResume.Dto.Concrete.SkillDtos;
 using ErolAksoyResume.Dto.Concrete.SubCategoryDtos;
 using ErolAksoyResume.Dto.Concrete.TestimionalDtos;
@@ -56,6 +57,11 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<TestimionalAddDto, Testimonial>();
             CreateMap<Testimonial, TestimionalGeneralDto>();
             CreateMap<TestimionalGeneralDto, Testimonial>();
+
+            CreateMap<Service, ServiceAddDto>();
+            CreateMap<ServiceAddDto, Service>();
+            CreateMap<Service, ServiceGeneralDto>();
+            CreateMap<ServiceGeneralDto, Service>();
         }
     }
 }
