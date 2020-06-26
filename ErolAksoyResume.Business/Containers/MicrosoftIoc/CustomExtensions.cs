@@ -2,6 +2,7 @@
 using ErolAksoyResume.Business.Interfaces;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.AppUserDtoValidator;
+using ErolAksoyResume.Business.ValidationRules.FluentValidation.BlogDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.PortofolioDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.ResumeDtoValidator;
 using ErolAksoyResume.Business.ValidationRules.FluentValidation.ServiceDtoValidator;
@@ -10,6 +11,7 @@ using ErolAksoyResume.Business.ValidationRules.FluentValidation.TestimionalDtoVa
 using ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories;
 using ErolAksoyResume.Dal.Interfaces;
 using ErolAksoyResume.Dto.Concrete.AppUserDtos;
+using ErolAksoyResume.Dto.Concrete.BlogDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
 using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
@@ -69,6 +71,8 @@ namespace ErolAksoyResume.Business.Containers.MicrosoftIoc
             services.AddTransient<IValidator<TestimionalGeneralDto>, TestimionalGeneralDtoValidator>();
             services.AddTransient<IValidator<ServiceAddDto>, ServiceAddDtoValidator>();
             services.AddTransient<IValidator<ServiceGeneralDto>, ServiceGeneralDtoValidator>();
+            services.AddTransient<IValidator<BlogAddDto>, BlogAddDtoValidator>();
+            services.AddTransient<IValidator<BlogGeneralDto>, BlogGeneralDtoValidator>();
         }
     }
 }

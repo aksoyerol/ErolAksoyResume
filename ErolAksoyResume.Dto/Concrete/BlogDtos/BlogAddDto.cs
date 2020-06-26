@@ -1,19 +1,22 @@
-﻿using ErolAksoyResume.Entities.Concrete;
+﻿using ErolAksoyResume.Dto.Interfaces;
+using ErolAksoyResume.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ErolAksoyResume.Dto.Concrete.SkillDtos
+namespace ErolAksoyResume.Dto.Concrete.BlogDtos
 {
-    public class SkillAddDto
+    public class BlogAddDto : IDto
     {
         public string Title { get; set; }
-        public string LevelPercent { get; set; }
         public string Text { get; set; }
-        public bool IsDraft { get; set; }
+        public string ImageUrl { get; set; }
+        public int AppUserId { get; set; } = 1;
         public int CategoryId { get; set; }
         public int SubCategoryId { get; set; }
+        public SubCategory SubCategory { get; set; }
         public SelectList CategoryList { get; set; }
+
     }
 }

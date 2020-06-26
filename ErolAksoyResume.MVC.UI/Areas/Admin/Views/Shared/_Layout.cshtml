@@ -79,6 +79,14 @@
                 </div>
             </li>
 
+
+            <li class="nav-item @(active=="blog"?"active bg-info":"")">
+                <a class="nav-link" asp-action="Index" asp-controller="Blog">
+                    <i class="fa fa-fw fa-microblog"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+
             <li class="nav-item @(active=="profile"?"active bg-info":"")">
                 <a class="nav-link" asp-action="Index" asp-controller="Profile">
                     <i class="fa fa-fw fa-user"></i>

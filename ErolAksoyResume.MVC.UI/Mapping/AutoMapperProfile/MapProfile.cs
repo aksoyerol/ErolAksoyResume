@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ErolAksoyResume.Dto.Concrete.AppUserDtos;
+using ErolAksoyResume.Dto.Concrete.BlogDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
 using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
@@ -62,6 +63,11 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
             CreateMap<ServiceAddDto, Service>();
             CreateMap<Service, ServiceGeneralDto>();
             CreateMap<ServiceGeneralDto, Service>();
+
+            CreateMap<Blog, BlogAddDto>();
+            CreateMap<BlogAddDto, Blog>();
+            CreateMap<Blog, BlogGeneralDto>();
+            CreateMap<BlogGeneralDto, Blog>();
         }
     }
 }
