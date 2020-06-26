@@ -19,6 +19,7 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Mapping
             builder.Property(x => x.ImageUrl).HasMaxLength(100);
             builder.Property(x => x.AppUserId).IsRequired();
             builder.HasOne(x => x.AppUser).WithMany(x => x.Blogs).HasForeignKey(x => x.AppUserId);
+            builder.HasOne(x => x.SubCategory).WithMany(x => x.Blogs).HasForeignKey(x => x.SubCategoryId);
 
         }
     }

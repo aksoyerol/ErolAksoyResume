@@ -14,5 +14,6 @@ namespace ErolAksoyResume.Entities.Concrete
         public List<Resume> Resumes { get; set; }
         public List<Skill> Skills { get; set; }
         public List<Portofolio> Portofolios { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }
