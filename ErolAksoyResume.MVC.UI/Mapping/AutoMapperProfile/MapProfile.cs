@@ -2,6 +2,7 @@
 using ErolAksoyResume.Dto.Concrete.AppUserDtos;
 using ErolAksoyResume.Dto.Concrete.BlogDtos;
 using ErolAksoyResume.Dto.Concrete.CategoryDtos;
+
 using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
 using ErolAksoyResume.Dto.Concrete.ProfileDtos;
 using ErolAksoyResume.Dto.Concrete.ResumeDtos;
@@ -72,6 +73,8 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
 
             CreateMap<AppUser, ProfileGeneralDto>();
             CreateMap<ProfileGeneralDto, AppUser>();
+
+            
         }
     }
 }

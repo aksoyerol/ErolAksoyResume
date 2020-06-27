@@ -1,8 +1,88 @@
-﻿@{
+﻿@model HomePageModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<!-- Page Content
+================================================== -->
+
+        <!-- Home Page
+        ================================================== -->
+        <div id="home">
+            <!-- Text Section -->
+            <div class="row">
+                <section class="about-me line col-md-12 padding_30 padbot_45">
+                    <div class="section-title"><span></span><h2>About Me</h2></div>
+                    <p class="top_30">
+                       @Model.About
+                    </p>
+                </section>
+            </div>
+            <!-- My Services Section -->
+            <div class="row">
+                <section class="services line graybg col-md-12 padding_50 padbot_50">
+                    <div class="section-title bottom_45"><span></span><h2>My Services</h2></div>
+
+                    <div class="row">
+                        @foreach (var service in Model.ServiceList)
+                        {
+                            <!-- a service -->
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="service">
+                                    <div class="icon">
+                                        <i class="flaticon-html"></i>
+                                    </div>
+                                    <span class="title">@service.Title</span>
+                                    <p class="little-text">@service.Text</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="row">
+                <section class="design-skills col-md-6 padding_60 padbot_50">
+                    <div class="section-title bottom_45"><span></span><h2>Design Skills</h2></div>
+                    <ul class="skill-list">
+                        @foreach (var skill in Model.SkillList)
+                        {
+                            @if (skill.SubCategory.Name == "Design" && skill.IsDraft == false)
+                            {
+                                <li>
+                                    <h3>@skill.Title</h3>
+                                    <div class="progress">
+                                        <div class="percentage" style="width:@skill.LevelPercent%;"></div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </section>
+
+                <section class="code-skills col-md-6 padding_60">
+                    <div class="section-title bottom_45"><span></span><h2>Code Skills</h2></div>
+                    <ul class="skill-list">
+                        @foreach(var skill in Model.SkillList)
+                        {
+                            @if (skill.SubCategory.Name == "Coding" && skill.IsDraft == false) {
+                        <li>
+                            <h3>@skill.Title</h3>
+                            <div class="progress">
+                                <div class="percentage" style="width:@skill.LevelPercent%;"></div>
+                            </div>
+                        </li>
+                            }
+                        }
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+
+
+  
+<!-- Footer
+================================================== -->
