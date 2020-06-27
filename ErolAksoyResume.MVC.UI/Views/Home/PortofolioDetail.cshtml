@@ -1,0 +1,69 @@
+﻿@model ErolAksoyResume.Dto.Concrete.PortofolioDtos.PortofolioGeneralDto
+@{
+    Layout = null;
+}
+
+
+
+<!doctype html>
+<html lang="en">
+
+<body>
+
+    <div class="col-md-8 col-md-offset-2 portfolio-content text-center">
+        <h1 class="blog-title">@Model.Title</h1>
+
+        <div class="cbp-slider mat-slider top_45 bottom_45">
+            <ul class="cbp-slider-wrap">
+                <li class="cbp-slider-item">
+                    <a href="images/portfolio-content/image-1.jpg" class="cbp-lightbox">
+                        <img src="images/portfolio-content/image-3.jpg" alt="">
+                    </a>
+                </li>
+                @*<li class="cbp-slider-item">
+                        <a href="images/portfolio-content/image-1.jpg" class="cbp-lightbox">
+                            <img src="images/portfolio-content/image-4.jpg" alt="">
+                        </a>
+                    </li>
+                    <li class="cbp-slider-item">
+                        <a href="images/portfolio-content/image-1.jpg" class="cbp-lightbox">
+                            <img src="images/portfolio-content/image-2.jpg" alt="">
+                        </a>
+                    </li>*@
+            </ul>
+        </div>
+
+        <div class="section-title bottom_30"><span></span><h2>About Project</h2></div>
+        
+        <div class="text-center">
+            <figure>
+            <img src="~/img/portofolio/@Model.ImageUrl"  alt="@Model.Title" class="bottom_15" style="max-height:300px; max-width:500px;"/>
+            </figure>
+        </div>
+
+        <p>
+            @Html.Raw(Model.Text)
+        </p>
+        <br>
+        <p><span>Client:</span> EKLENECEK</p>
+        <br>
+        <button class="site-btn top_15 bottom_30">Launch Project.</button>
+        <figure class="top_45 bottom_45">
+            <img src="images/portfolio-content/image-2.jpg" alt="">
+        </figure>
+        <div class="social-share col-md-12 bottom_60 top_15">
+            <ul>
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+
