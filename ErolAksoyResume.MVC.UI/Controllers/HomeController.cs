@@ -11,6 +11,7 @@ using ErolAksoyResume.Business.Interfaces;
 using ErolAksoyResume.Entities.Concrete;
 using AutoMapper;
 using ErolAksoyResume.Dto.Concrete.PortofolioDtos;
+using ErolAksoyResume.Dto.Concrete.BlogDtos;
 
 namespace ErolAksoyResume.MVC.UI.Controllers
 {
@@ -25,12 +26,14 @@ namespace ErolAksoyResume.MVC.UI.Controllers
         private readonly IPortofolioService _portofolioService;
         private readonly ICategoryService _categoryService;
         private readonly ISubCategoryService _subCategoryService;
+        private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
 
         public HomeController(UserManager<AppUser> userManager, IServiceService serviceService, ISkillService skillService, IAppUserService appUserService,
             IResumeService resumeService, ITestimionalService testimionalService, IPortofolioService portofolioService, ICategoryService categoryService,
-            ISubCategoryService subCategoryService,IMapper mapper)
+            ISubCategoryService subCategoryService, IMapper mapper, IBlogService blogService)
         {
+            _blogService = blogService;
             _mapper = mapper;
             _subCategoryService = subCategoryService;
             _categoryService = categoryService;
@@ -75,8 +78,8 @@ namespace ErolAksoyResume.MVC.UI.Controllers
         public async Task<IActionResult> Portofolio()
         {
             PortofolioPageModel portofolioPageModel = new PortofolioPageModel();
-       
-            var portofolioSubCategory = await _subCategoryService.GetSubCategoryWithAllProp(x=>x.Category.Name=="Portofolio");
+
+            var portofolioSubCategory = await _subCategoryService.GetSubCategoryWithAllProp(x => x.Category.Name == "Portofolio");
 
             portofolioPageModel.SubCategoryList = portofolioSubCategory;
             portofolioPageModel.Portofolios = await _portofolioService.GetListWithAllPropAsync();
@@ -87,6 +90,29 @@ namespace ErolAksoyResume.MVC.UI.Controllers
         public async Task<IActionResult> PortofolioDetail(int id)
         {
             return View(_mapper.Map<PortofolioGeneralDto>(await _portofolioService.GetByIdAsync(id)));
+        }
+
+        //[AcceptVerbs("GET", "HEAD", Route = "{slug}")]
+        public async Task<IActionResult> Blog(int? id)
+        {
+            var subCategoryControl = await _subCategoryService.GetByIdAsync(id.GetValueOrDefault());
+            if (subCategoryControl!=null)
+            {
+                ViewData["BlogCategoryName"] = subCategoryControl.Name;
+                return View(_mapper.Map<List<BlogGeneralDto>>(await _blogService.GetListWithAllPropByFilterAsync(x => x.SubCategoryId == id)));
+            }
+            return View(_mapper.Map<List<BlogGeneralDto>>(await _blogService.GetListWithAllPropAsync()));
+
+        }
+
+        public async Task<IActionResult> BlogDetail(int id)
+        {
+            var blog = await _blogService.GetByIdAsync(id);
+            if (blog != null)
+            {
+                return View(_mapper.Map<BlogGeneralDto>(blog));
+            }
+            return NotFound();
         }
 
     }

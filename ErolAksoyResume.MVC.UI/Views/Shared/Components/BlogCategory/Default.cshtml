@@ -1,0 +1,16 @@
+﻿@model List<ErolAksoyResume.Dto.Concrete.SubCategoryDtos.SubCategoryListDto>
+@{
+    Layout = null;
+}
+
+
+<div class="category">
+    <div class="section-title bottom_15 top_15"><span></span><h3>Categories</h3></div>
+    <ul class="category-list">
+        @foreach (var item in Model)
+        {
+            <li><a asp-action="Blog" asp-route-id="@item.Id">@item.Name</a><span></span></li>
+        }
+
+    </ul>
+</div>

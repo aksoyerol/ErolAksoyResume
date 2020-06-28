@@ -49,7 +49,7 @@
                                     </li>
                                 }
                             }
-                           
+
                         </ul>
                     </div>
                 }
@@ -62,37 +62,37 @@
         </section>
     </div>
     <hr />
-    <!-- Testimonials -->
-    <div class="row h-auto">
-        <section class="testimonials bottom_30">
-            <div class="section-title top_60 bottom_30"><span></span><h2>Testimonials</h2></div>
-            <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
-                @if (Model.TestimonialList.Count > 0) { 
-                @foreach(var testimonial in Model.TestimonialList)
-                {
-                <!-- a item -->
-                <div class="col-md-12 item">
-                    <div class="comment">
-                        <div class="top-section">
-                            <figure>
-                                <img src="~/img/testimonial/@testimonial.ImageUrl" alt="">
-                            </figure>
-                            <div class="name-info">
-                                <span class="name">@testimonial.Name</span><br />
-                                <span class="job">@testimonial.Title</span>
+    @if (Model.TestimonialList.Count > 0)
+    {
+        <!-- Testimonials -->
+        <div class="row h-auto">
+            <section class="testimonials bottom_30">
+                <div class="section-title top_60 bottom_30"><span></span><h2>Testimonials</h2></div>
+                <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
+
+                    @foreach (var testimonial in Model.TestimonialList)
+                    {
+                        <!-- a item -->
+                        <div class="col-md-12 item">
+                            <div class="comment">
+                                <div class="top-section">
+                                    <figure>
+                                        <img src="~/img/testimonial/@testimonial.ImageUrl" alt="">
+                                    </figure>
+                                    <div class="name-info">
+                                        <span class="name">@testimonial.Name</span><br />
+                                        <span class="job">@testimonial.Title</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p>@testimonial.Text</p>
                             </div>
                         </div>
-                        <hr>
-                        <p>@testimonial.Text</p>
-                    </div>
+                    }
+
+
                 </div>
-                }
-                }
-                else
-                {
-                    <p>No testimonial added yet !</p>
-                }
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
+    }
 </div>
