@@ -19,7 +19,7 @@
                     <th>Started Date</th>
                     <th>Ended Date</th>
                     <th>Draft</th>
-                    <th>Sub Category</th>
+                    <th>Work or Education</th>
                     <th>Panel</th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@
                     <th>Started Date</th>
                     <th>Ended Date</th>
                     <th>Draft</th>
-                    <th>Sub Category</th>
+                    <th>Work or Education</th>
                     <th>Panel</th>
                 </tr>
             </tfoot>
@@ -55,7 +55,21 @@
                                 <input class="form-check" type="checkbox" disabled>
                             }
                         </td>
-                        <td>@item.SubCategory.Name</td>
+                        <td>
+                            @if (item.IsWork)
+                            {
+                                @:Work
+                            }
+                            else if (item.IsEducation)
+                            {
+                                @:Education
+                            }
+                            else
+                            {
+                                @:null
+                            }
+
+                        </td>
                         <td>
                             <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit">&nbsp;</i>Edit</a>
                             <a data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-sm" asp-action="Delete" data-id="@item.Id"><i class="fa fa-trash">&nbsp;</i>Delete</a>

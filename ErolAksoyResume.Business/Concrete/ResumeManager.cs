@@ -17,14 +17,14 @@ namespace ErolAksoyResume.Business.Concrete
             _resumeDal = resumeDal;
         }
 
-        public Task<List<Resume>> GetListWithAllProp()
-        {
-            return _resumeDal.GetListWithAllProp();
-        }
+        //public Task<List<Resume>> GetListWithAllProp()
+        //{
+        //    return _resumeDal.GetListWithAllProp();
+        //}
 
-        public Task<Resume> GetSingleWithAllProp(Expression<Func<Resume, bool>> filter)
-        {
-            return _resumeDal.GetSingleWithAllProp(filter);
-        }
+        //public Task<Resume> GetSingleWithAllProp(Expression<Func<Resume, bool>> filter)
+        //{
+        //    return _resumeDal.GetSingleWithAllProp(filter);
+        //}
     }
 }

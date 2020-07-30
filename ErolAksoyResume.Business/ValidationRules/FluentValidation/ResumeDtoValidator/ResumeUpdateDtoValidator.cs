@@ -14,8 +14,8 @@ namespace ErolAksoyResume.Business.ValidationRules.FluentValidation.ResumeDtoVal
             RuleFor(x => x.Text).NotNull().WithMessage("Text area cannot be null !");
             RuleFor(x => x.StartedDate).NotNull().WithMessage("Started Date area cannot be null !");
             RuleFor(x => x.EndedDate).NotNull().WithMessage("Ended Date area cannot be null !");
-            RuleFor(x => x.SubCategoryId).NotNull().WithMessage("Sub Category area cannot be null !");
-            RuleFor(x => x.CategoryId).NotNull().WithMessage("Category area cannot be null !");
+            //RuleFor(x => x.SubCategoryId).NotNull().WithMessage("Sub Category area cannot be null !");
+            //RuleFor(x => x.CategoryId).NotNull().WithMessage("Category area cannot be null !");
         }
     }
 }

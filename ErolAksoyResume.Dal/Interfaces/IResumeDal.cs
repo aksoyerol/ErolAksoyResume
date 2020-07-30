@@ -9,7 +9,7 @@ namespace ErolAksoyResume.Dal.Interfaces
 {
     public interface IResumeDal : IGenericDal<Resume>
     {
-        Task<List<Resume>> GetListWithAllProp();
-        Task<Resume> GetSingleWithAllProp(Expression<Func<Resume,bool>> filter);
+    //    Task<List<Resume>> GetListWithAllProp();
+    //    Task<Resume> GetSingleWithAllProp(Expression<Func<Resume,bool>> filter);
     }
 }

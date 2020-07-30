@@ -20,7 +20,7 @@
                             <!-- a work -->
                             @foreach (var resumeWork in Model.ResumeList)
                             {
-                                @if (resumeWork.SubCategoryId == ViewBag.WorkSubCategoryId && resumeWork.IsDraft == false)
+                                @if (@*resumeWork.SubCategoryId == ViewBag.WorkSubCategoryId &&*@ resumeWork.IsDraft == false)
                                 {
                                     <li>
                                         <h3 class="line-title">@resumeWork.Title</h3>
@@ -40,14 +40,13 @@
                             <!-- a work -->
                             @foreach (var resume in Model.ResumeList)
                             {
-                                @if (resume.SubCategoryId == ViewBag.EducationSubCategoryId && resume.IsDraft == false)
-                                {
+                               
                                     <li>
                                         <h3 class="line-title">@resume.Title</h3>
                                         <span>@resume.StartedDate - @resume.EndedDate</span>
                                         <p class="little-text">@resume.Text</p>
                                     </li>
-                                }
+                               
                             }
 
                         </ul>

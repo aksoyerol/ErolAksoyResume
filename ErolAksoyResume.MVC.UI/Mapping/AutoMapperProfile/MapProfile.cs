@@ -73,8 +73,10 @@ namespace ErolAksoyResume.MVC.UI.Mapping.AutoMapperProfile
 
             CreateMap<AppUser, ProfileGeneralDto>();
             CreateMap<ProfileGeneralDto, AppUser>();
+            CreateMap<AppUser, AppUserViewComponentDto>();
+            CreateMap<AppUserViewComponentDto, AppUser>();
 
-            
+
         }
     }
 }

@@ -48,36 +48,41 @@
                 </div>
             </div>
 
-            <div class="position-relative row form-group">
-                <label asp-for="@Model.CategoryId" class="col-sm-2 col-form-label">Base Category</label>
-                <div class="col-sm-10">
-                    <select id="CategoryId" class=" form-control" asp-items="@Model.CategoryList">
-                        <option hidden value="-1">-- Select Base Category --</option>
-                    </select>
-                    <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+            <div class="card mb-3">
+                <div class="card-header">Options</div>
+
+                <div class="card-body">
+                    <div class="custom-checkbox row custom-control form-group ">
+                        <div class="col-md-4">
+                            <input type="checkbox" id="exampleCustomCheckbox1" asp-for="@Model.IsDraft" class="custom-control-input">
+                            <label class="custom-control-label" for="exampleCustomCheckbox1">
+                                Add to Draft
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="custom-checkbox row custom-control form-group ">
+                            <div class="col-md-4">
+                                <input type="checkbox" id="exampleCustomCheckbox2"  asp-for="@Model.IsWork" class="custom-control-input">
+                                <label class="custom-control-label" for="exampleCustomCheckbox2">
+                                    Add to Work
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="custom-checkbox row custom-control form-group ">
+                            <div class="col-md-4">
+                                <input type="checkbox" id="exampleCustomCheckbox" asp-for="@Model.IsEducation" class="custom-control-input">
+                                <label class="custom-control-label" for="exampleCustomCheckbox">
+                                    Add to Education
+                                </label>
+                            </div>
+                        </div>
+
+                  
+
                 </div>
-            </div>
-
-            <div class="position-relative row form-group">
-                <label asp-for="@Model.CategoryId" class="col-sm-2 col-form-label">Sub Category</label>
-                <div class="col-sm-10">
-                    <select id="SubCategoryId" asp-for="@Model.SubCategoryId" asp-items="@(ViewBag.SubCatList)" class="form-control">
-                    </select>
-                    <span asp-validation-for="@Model.SubCategoryId" class="text-danger"></span>
-                </div>
-            </div>
-
-
-
-            <div class="custom-checkbox row custom-control form-group">
-                <div class="col-md-4">
-                    <input type="checkbox" id="exampleCustomCheckbox" asp-for="@Model.IsDraft" class="custom-control-input">
-                    <label class="custom-control-label" for="exampleCustomCheckbox">
-                        Add to Draft
-                    </label>
-
-                </div>
-            </div>
+            </div><!--cardEnd-->
 
             <div class="position-relative row">
                 <button type="submit" class="btn btn-primary col-md-6 ">Save</button>
@@ -127,7 +132,7 @@
                 yearRange: 'c-20:c+10',
                 changeYear: true,
                 changeMonth: true,
-                
+
 
             });
 

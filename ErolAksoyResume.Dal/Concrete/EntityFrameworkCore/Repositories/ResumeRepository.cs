@@ -13,16 +13,16 @@ namespace ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Repositories
 {
     public class ResumeRepository : GenericRepository<Resume>, IResumeDal
     {
-        public async Task<List<Resume>> GetListWithAllProp()
-        {
-            using var context = new MyContext();
-            return await context.Resumes.Include(x => x.SubCategory).ToListAsync();
-        }
+        //public async Task<List<Resume>> GetListWithAllProp()
+        //{
+        //    using var context = new MyContext();
+        //    return await context.Resumes.Include(x => x.SubCategory).ToListAsync();
+        //}
 
-        public async Task<Resume> GetSingleWithAllProp(Expression<Func<Resume, bool>> filter)
-        {
-            using var context = new MyContext();
-            return await context.Resumes.Include(x => x.SubCategory).ThenInclude(x => x.Category).Where(filter).FirstOrDefaultAsync();
-        }
+        //public async Task<Resume> GetSingleWithAllProp(Expression<Func<Resume, bool>> filter)
+        //{
+        //    using var context = new MyContext();
+        //    return await context.Resumes.Include(x => x.SubCategory).ThenInclude(x => x.Category).Where(filter).FirstOrDefaultAsync();
+        //}
     }
 }

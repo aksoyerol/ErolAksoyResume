@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ErolAksoyResume.Business.Concrete;
 using ErolAksoyResume.Business.Containers.MicrosoftIoc;
 using ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Context;
 using ErolAksoyResume.Entities.Concrete;

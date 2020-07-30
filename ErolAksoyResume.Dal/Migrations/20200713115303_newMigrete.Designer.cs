@@ -4,14 +4,16 @@ using ErolAksoyResume.Dal.Concrete.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ErolAksoyResume.Dal.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20200713115303_newMigrete")]
+    partial class newMigrete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,17 +282,11 @@ namespace ErolAksoyResume.Dal.Migrations
                     b.Property<bool>("IsDraft")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsEducation")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsWork")
-                        .HasColumnType("bit");
-
                     b.Property<string>("StartedDate")
                         .HasColumnName("Started Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SubCategoryId")
+                    b.Property<int>("SubCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -555,9 +551,11 @@ namespace ErolAksoyResume.Dal.Migrations
 
             modelBuilder.Entity("ErolAksoyResume.Entities.Concrete.Resume", b =>
                 {
-                    b.HasOne("ErolAksoyResume.Entities.Concrete.SubCategory", null)
+                    b.HasOne("ErolAksoyResume.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany("Resumes")
-                        .HasForeignKey("SubCategoryId");
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ErolAksoyResume.Entities.Concrete.Skill", b =>

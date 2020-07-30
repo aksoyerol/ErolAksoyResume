@@ -29,23 +29,24 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             TempData["active"] = "resume";
-            return View(_mapper.Map<List<ResumeListDto>>(await _resumeService.GetListWithAllProp()));
+            //return View();
+            return View(_mapper.Map<List<ResumeListDto>>(await _resumeService.GetListAsync()));
         }
 
         public async Task<IActionResult> GetSubCategories(int id)
         {
-            
+
             List<SubCategory> subCategories = new List<SubCategory>();
             subCategories = await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == id);
-         
+
             return Json(new SelectList(subCategories, "Id", "Name"));
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             TempData["active"] = "resume";
             ResumeAddDto resumeAddDto = new ResumeAddDto();
-            resumeAddDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name");
+            //resumeAddDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name");
 
             return View(resumeAddDto);
         }
@@ -53,7 +54,7 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ResumeAddDto resumeAddDto)
         {
-            
+
             if (ModelState.IsValid)
             {
                 await _resumeService.InsertAsync(new Resume
@@ -62,13 +63,16 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
                     EndedDate = resumeAddDto.StartedDate,
                     StartedDate = resumeAddDto.EndedDate,
                     IsDraft = resumeAddDto.IsDraft,
-                    SubCategoryId = resumeAddDto.SubCategoryId,
-                    Text = resumeAddDto.Text
+                    //SubCategoryId = resumeAddDto.SubCategoryId,
+                    Text = resumeAddDto.Text,
+                    IsEducation = resumeAddDto.IsEducation,
+                    IsWork = resumeAddDto.IsWork
+
 
                 });
                 return RedirectToAction("Index");
             }
-            resumeAddDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name");
+            //resumeAddDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name");
 
             return View(resumeAddDto);
         }
@@ -83,17 +87,17 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
             //var category = activeCategory.Where(x => x.CategoryId == updatedResume.SubCategory.CategoryId).FirstOrDefault();
 
             var updatedResume = await _resumeService.GetByIdAsync(id);
-            var activecategory = await _categoryService.GetCategoryBySubCatIdAsync(updatedResume.SubCategoryId);
-            ViewBag.Deneme = activecategory.Name;
-            ViewBag.SubCatId = updatedResume.SubCategoryId;
-            
+            /*ar activecategory = await _categoryService.GetCategoryBySubCatIdAsync(updatedResume.SubCategoryId);*/
+            //ViewBag.Deneme = activecategory.Name;
+            //ViewBag.SubCatId = updatedResume.SubCategoryId;
+
             if (updatedResume != null)
             {
-                ViewBag.SubCategory = updatedResume.SubCategoryId;
-                var resume = _mapper.Map<ResumeUpdateDto>(updatedResume);
-                resume.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activecategory.Id);
-                ViewBag.SubCatList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activecategory.Id),"Id","Name",updatedResume.SubCategoryId);
-                return View(resume);
+                //ViewBag.SubCategory = updatedResume.SubCategoryId;
+
+                //resume.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activecategory.Id);
+                //ViewBag.SubCatList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activecategory.Id),"Id","Name",updatedResume.SubCategoryId);
+                return View(_mapper.Map<ResumeUpdateDto>(updatedResume));
             }
             return BadRequest();
         }
@@ -109,17 +113,18 @@ namespace ErolAksoyResume.MVC.UI.Areas.Admin.Controllers
                     Id = resumeUpdateDto.Id,
                     IsDraft = resumeUpdateDto.IsDraft,
                     StartedDate = resumeUpdateDto.StartedDate,
-                    SubCategoryId = resumeUpdateDto.SubCategoryId,
+                    IsEducation = resumeUpdateDto.IsEducation,
+                    IsWork = resumeUpdateDto.IsWork,
+                    //SubCategoryId = resumeUpdateDto.SubCategoryId,
                     Text = resumeUpdateDto.Text,
                     Title = resumeUpdateDto.Title
                 });
 
                 return RedirectToAction("Index");
             }
-            var activeCategory = await _categoryService.GetCategoryBySubCatIdAsync(resumeUpdateDto.SubCategoryId);
-            resumeUpdateDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activeCategory.Id);
-            ViewBag.SubCatList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activeCategory.Id), "Id", "Name", resumeUpdateDto.SubCategoryId);
-
+            //var activeCategory = await _categoryService.GetCategoryBySubCatIdAsync(resumeUpdateDto.SubCategoryId);
+            //resumeUpdateDto.CategoryList = new SelectList(await _categoryService.GetListAsync(), "Id", "Name", activeCategory.Id);
+            //ViewBag.SubCatList = new SelectList(await _subCategoryService.GetListByFilterAsync(x => x.CategoryId == activeCategory.Id), "Id", "Name", resumeUpdateDto.SubCategoryId);
 
             return View(resumeUpdateDto);
         }

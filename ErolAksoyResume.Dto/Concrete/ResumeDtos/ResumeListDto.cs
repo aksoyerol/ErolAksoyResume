@@ -14,6 +14,8 @@ namespace ErolAksoyResume.Dto.Concrete.ResumeDtos
         public string StartedDate { get; set; }
         public string EndedDate { get; set; }
         public bool IsDraft { get; set; }
-        public SubCategory SubCategory { get; set; }
+        public bool IsWork { get; set; }
+        public bool IsEducation { get; set; }
+        //public SubCategory SubCategory { get; set; }
     }
 }

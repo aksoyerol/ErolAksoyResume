@@ -62,17 +62,16 @@ namespace ErolAksoyResume.MVC.UI.Controllers
         public async Task<IActionResult> Resume([FromServices] ISubCategoryService subCategoryService)
         {
 
-            var educationSubCategory = await subCategoryService.GetByFilterAsync(x => x.Name == "Education" || x.Name == "Education History");
-            var workSubCategory = await subCategoryService.GetByFilterAsync(x => x.Name == "Work" || x.Name == "Working" || x.Name == "Works");
-            ResumePageModel resumePageModel = new ResumePageModel();
-            ViewBag.EducationSubCategoryId = educationSubCategory.Id;
-            ViewBag.WorkSubCategoryId = workSubCategory.Id;
+            //var educationSubCategory = await subCategoryService.GetByFilterAsync(x => x.Name == "Education" || x.Name == "Education History");
+            //var workSubCategory = await subCategoryService.GetByFilterAsync(x => x.Name == "Work" || x.Name == "Working" || x.Name == "Works");
+            //ResumePageModel resumePageModel = new ResumePageModel();
+            //ViewBag.EducationSubCategoryId = educationSubCategory.Id;
+            //ViewBag.WorkSubCategoryId = workSubCategory.Id;
 
-            resumePageModel.TestimonialList = await _testimionalService.GetListAsync();
-            resumePageModel.ResumeList = await _resumeService.GetListWithAllProp();
+            //resumePageModel.TestimonialList = await _testimionalService.GetListAsync();
+            //resumePageModel.ResumeList = await _resumeService.GetListWithAllProp();
 
-
-            return View(resumePageModel);
+            return View();
         }
 
         public async Task<IActionResult> Portofolio()

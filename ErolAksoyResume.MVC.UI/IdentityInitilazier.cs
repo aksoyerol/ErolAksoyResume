@@ -10,10 +10,10 @@ namespace ErolAksoyResume.MVC.UI
 {
     public static class IdentityInitilazier
     {
-     
-
-        public static async Task SeedData(UserManager<AppUser> userManager,RoleManager<AppRole> roleManager)
+        public static async Task SeedData(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
+           
+
             var adminRole = await roleManager.FindByNameAsync("Admin");
             var adminUser = await userManager.FindByNameAsync("pcparticle");
 
@@ -28,7 +28,7 @@ namespace ErolAksoyResume.MVC.UI
                 {
                     Name = "Erol",
                     LastName = "Aksoy",
-                    UserName="pcparticle",
+                    UserName = "pcparticle",
                     About = "Doldurulacak",
                     Adress = "Gelecek",
                     Email = "erolaksoy98@gmail.com",
